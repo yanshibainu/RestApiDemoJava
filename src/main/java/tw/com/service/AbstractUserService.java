@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import tw.com.entities.User;
 
-public abstract class AbstractUserService implements InterfaceUserService{
+public abstract class AbstractUserService implements InterfaceService{
 	
 	private static List<User> list = new ArrayList<>();
 	
@@ -16,22 +16,26 @@ public abstract class AbstractUserService implements InterfaceUserService{
 		list.add(new User(3, "CCC", "CCC@gmial.com", "12345"));
 	}
 	
-	public User addUser(User user) {
+	@Override
+	public User add(User user) {
 		list.add(user);
 		return user;
 	}
 	
-	public List<User> getAllUser(){
+	@Override
+	public List<User> getAll(){
 		return list;
 	}
 	
-	public User getUserById(int id) {
+	@Override
+	public User getById(int id) {
 		User user = null;
 		user = list.stream().filter(e->e.getId()==id).findFirst().get();
 		return user;
 	}
 	
-	public List<User> updateUser(User user, int id) {
+	@Override
+	public List<User> update(User user, int id) {
 		list.stream().map(e->{
 			if(e.getId() == id) {
 				if(e.getId() != user.getId()) {
@@ -56,7 +60,8 @@ public abstract class AbstractUserService implements InterfaceUserService{
 		return list;	
 	}
 	
-	public List<User> deleteUser(int id) {
+	@Override
+	public List<User> delete(int id) {
 		list.removeIf(e->e.getId()==id);
 		return list;
 	}

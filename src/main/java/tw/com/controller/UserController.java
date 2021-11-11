@@ -21,27 +21,27 @@ public class UserController {
 	
 	@GetMapping("/user")
 	public List<User> getAllUser(){
-		return userService.getAllUser();
+		return userService.getAll();
 	}
 	
 	@GetMapping("/user/{userid}")
 	public User getUserById(@PathVariable int userid) {
-		return userService.getUserById(userid);
+		return userService.getById(userid);
 	}
 	
 	@PostMapping("/user")
 	public User addUser(@RequestBody User user) {
-		return userService.addUser(user);
+		return userService.add(user);
 	}
 	
 	@DeleteMapping("/user/{userid}")
 	public List<User> deleteUser(@PathVariable int userid) {
-		return userService.deleteUser(userid);
+		return userService.delete(userid);
 	}
 	
 	@PatchMapping("/user/{userid}")
 	public List<User> updateUser(@RequestBody User user, @PathVariable int userid) {
-		return userService.updateUser(user, userid);
+		return userService.update(user, userid);
 	}
 	
 }
