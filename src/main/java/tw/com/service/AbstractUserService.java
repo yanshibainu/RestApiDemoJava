@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import tw.com.entities.User;
 
-public abstract class AbstractUserService implements InterfaceService{
+public abstract class AbstractUserService implements InterfaceService<User>{
 	
 	private static List<User> list = new ArrayList<>();
 	

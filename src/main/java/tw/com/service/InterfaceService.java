@@ -2,17 +2,15 @@ package tw.com.service;
 
 import java.util.List;
 
-import tw.com.entities.User;
+public interface InterfaceService<E> {
 
-public interface InterfaceService {
+	public E add(E entity);
 
-	public User add(User user);
+	public List<E> getAll();
+	public E getById(int id);
 
-	public List<User> getAll();
-	public User getById(int id);
+	public List<E> update(E entity, int id);
 
-	public List<User> update(User user, int id);
-
-	public List<User> delete(int id);
+	public List<E> delete(int id);
 	
 }
