@@ -8,7 +8,7 @@ public abstract class AbstractService<E> implements IService<E>{
 	protected Map<Integer, E> map = new HashMap<>();
 	
 	@Override
-	public E add(E entity) {
+	public E create(E entity) {
 		map.put(map.size(), entity);
 		return entity;
 	}
@@ -24,7 +24,7 @@ public abstract class AbstractService<E> implements IService<E>{
 	}
 	
 	@Override
-	public E update(E entity, int id) {
+	public E update(int id, E entity) {
 		map.replace(id, entity);
 		return map.get(id);
 	}

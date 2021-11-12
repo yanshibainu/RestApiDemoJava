@@ -8,9 +8,9 @@ import tw.com.entities.User;
 public class UserService extends AbstractService<User>{
 
 	@Override
-	public User add(User user) {
+	public User create(User user) {
 		user.setId(map.size());
-		return super.add(user);
+		return super.create(user);
 	}
 	
 }
