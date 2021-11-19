@@ -1,7 +1,9 @@
 package tw.com.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-public interface IRepository<E,ID> extends JpaRepository<E, ID>{
+@NoRepositoryBean
+public interface IRepository<E, ID> extends JpaRepository<E, ID>{
 
 }

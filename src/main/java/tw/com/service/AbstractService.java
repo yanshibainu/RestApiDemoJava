@@ -7,9 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tw.com.dao.IRepository;
 
 public abstract class AbstractService<E> implements IService<E>{
-	@Autowired
-	protected IRepository<E, String> iRepository;
 	
+	private IRepository<E, String> iRepository;
+	
+	@Autowired
+	public AbstractService(IRepository<E, String> iRepository) {
+		this.iRepository = iRepository;
+	}
+
 	@Override
 	public E create(E entity) {
 		iRepository.save(entity);
