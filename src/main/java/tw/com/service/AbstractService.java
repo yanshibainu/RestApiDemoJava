@@ -7,18 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tw.com.dao.IRepository;
 
 public abstract class AbstractService<E> implements IService<E>{
-	
-	private IRepository<E, String> iRepository;
-	
 	@Autowired
+	protected IRepository<E, String> iRepository;
+	
 	public AbstractService(IRepository<E, String> iRepository) {
 		this.iRepository = iRepository;
 	}
 
 	@Override
 	public E create(E entity) {
-		iRepository.save(entity);
-		return entity;
+		return iRepository.save(entity);
 	}
 	
 	@Override
@@ -33,11 +31,7 @@ public abstract class AbstractService<E> implements IService<E>{
 	
 	@Override
 	public E update(String id, E entity) {
-		if(iRepository.findById(id).get() == null) {
-			return null;
-		}else {
-			return iRepository.save(entity);
-		}	
+		return iRepository.save(entity);	
 	}
 	
 	@Override
