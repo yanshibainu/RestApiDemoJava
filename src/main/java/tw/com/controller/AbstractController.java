@@ -1,6 +1,6 @@
 package tw.com.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,22 +16,22 @@ public abstract class AbstractController<E> implements IController<E> {
 	}
 
 	@Override
-	public Map<Integer, E> getAll() {
+	public List<E> getAll() {
 		return iService.getAll();
 	}
 
 	@Override
-	public E getById(int id) {
+	public E getById(String id) {
 		return iService.getById(id);
 	}
 
 	@Override
-	public E update(int id, E enity) {
+	public E update(String id, E enity) {
 		return iService.update(id, enity);
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		iService.delete(id);
 	}
 	

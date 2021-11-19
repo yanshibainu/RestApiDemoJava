@@ -1,16 +1,16 @@
 package tw.com.service;
 
-import java.util.Map;
+import java.util.List;
 
 public interface IService<E> {
 
 	public E create(E entity);
 
-	public Map<Integer, E> getAll();
-	public E getById(int id);
+	public List<E> getAll();
+	public E getById(String id);
 
-	public E update(int id, E entity);
+	public E update(String id, E entity);
 
-	public void delete(int id);
+	public void delete(String id);
 	
 }

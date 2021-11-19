@@ -1,25 +1,35 @@
 package tw.com.entities;
 
+import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
-	
-	private int id;
+	@Id 
+	private String id = UUID.randomUUID().toString();
+	@Column(nullable = false, length = 15)
 	private String name;
+	@Column(nullable = false, length = 50)
 	private String email;
+	@Column(nullable = false, length = 15)
 	private String password;
 	
-	public User(int id, String name, String email, String password) {
-		super();
-		this.id = id;
+	
+	public User() {
+	}
+
+	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
 	
-	public int getId() {
+	
+	public String getId() {
 		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -39,11 +49,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
 	}
-	
 	
 }

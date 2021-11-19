@@ -1,6 +1,6 @@
 package tw.com.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +15,13 @@ public interface IController<E> {
 	public E create(@RequestBody E entity);
 	
 	@GetMapping
-	public Map<Integer, E> getAll();
+	public List<E> getAll();
 	@GetMapping("/{id}")
-	public E getById(@PathVariable int id);
+	public E getById(@PathVariable String id);
 	
 	@PatchMapping("/{id}")
-	public E update(@PathVariable int id, @RequestBody E enity);
+	public E update(@PathVariable String id, @RequestBody E enity);
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable int id);
+	public void delete(@PathVariable String id);
 }

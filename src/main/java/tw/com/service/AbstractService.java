@@ -1,37 +1,43 @@
 package tw.com.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import tw.com.dao.IRepository;
 
 public abstract class AbstractService<E> implements IService<E>{
-	
-	protected Map<Integer, E> map = new HashMap<>();
+	@Autowired
+	protected IRepository<E, String> iRepository;
 	
 	@Override
 	public E create(E entity) {
-		map.put(map.size(), entity);
+		iRepository.save(entity);
 		return entity;
 	}
 	
 	@Override
-	public Map<Integer, E> getAll(){
-		return map;
+	public List<E> getAll(){
+		return iRepository.findAll();
 	}
 	
 	@Override
-	public E getById(int id) {
-		return map.get(id);
+	public E getById(String id) {
+		return iRepository.findById(id).get();
 	}
 	
 	@Override
-	public E update(int id, E entity) {
-		map.replace(id, entity);
-		return map.get(id);
+	public E update(String id, E entity) {
+		if(iRepository.findById(id).get() == null) {
+			return null;
+		}else {
+			return iRepository.save(entity);
+		}	
 	}
 	
 	@Override
-	public void delete(int id) {
-		map.remove(id);
+	public void delete(String id) {
+		iRepository.deleteById(id);
 	}
 	
 }
