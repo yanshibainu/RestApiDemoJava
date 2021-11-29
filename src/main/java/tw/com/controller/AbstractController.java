@@ -9,7 +9,7 @@ import tw.com.service.IService;
 public abstract class AbstractController<E> implements IController<E> {
 	@Autowired
 	protected IService<E> iService;
-	
+
 	@Override
 	public E create(E entity) {
 		return iService.create(entity);

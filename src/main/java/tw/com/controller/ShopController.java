@@ -3,10 +3,10 @@ package tw.com.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tw.com.entities.User;
+import tw.com.entities.Shop;
 
 @RestController
-@RequestMapping("/user")
-public class UserController extends AbstractController<User>{
+@RequestMapping("/shop")
+public class ShopController extends AbstractController<Shop>{
 
 }
