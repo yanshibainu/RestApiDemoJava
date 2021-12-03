@@ -13,10 +13,13 @@ import javax.persistence.OneToMany;
 public class Shop {
 	@Id
 	private String id = UUID.randomUUID().toString();
-	@Column(name = "商店")
+
+	@Column(length = 15)
 	private String name;
-	@Column(name = "地址")
+
+	@Column(length = 50)
 	private String address;
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Item> item;
 	
