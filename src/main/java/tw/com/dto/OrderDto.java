@@ -6,18 +6,18 @@ import tw.com.entities.User;
 import java.time.LocalDate;
 
 public class OrderDto {
-    private String user_id;
+    private User user;
     private Integer amount;
-    private String item_id;
+    private Item item;
     private LocalDate buyDate;
     private Integer orderNumber;
 
-    public String getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getAmount() {
@@ -28,12 +28,12 @@ public class OrderDto {
         this.amount = amount;
     }
 
-    public String getItem_id() {
-        return item_id;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public LocalDate getBuyDate() {
@@ -55,9 +55,9 @@ public class OrderDto {
     @Override
     public String toString() {
         return "OrderDto{" +
-                "user_id='" + user_id + '\'' +
+                "user=" + user +
                 ", amount=" + amount +
-                ", item_id='" + item_id + '\'' +
+                ", item=" + item +
                 ", buyDate=" + buyDate +
                 ", orderNumber=" + orderNumber +
                 '}';

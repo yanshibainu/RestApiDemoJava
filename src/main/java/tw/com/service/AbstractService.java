@@ -31,7 +31,12 @@ public abstract class AbstractService<E> implements IService<E>{
 	
 	@Override
 	public E update(String id, E entity) {
-		return iRepository.save(entity);	
+		if(iRepository.findById(id).isPresent()){
+			return iRepository.save(entity);
+		}
+		else{
+			return null;
+		}
 	}
 	
 	@Override

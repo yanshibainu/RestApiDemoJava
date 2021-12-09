@@ -8,7 +8,8 @@ import java.util.Set;
 public class ItemDto {
     private String name;
     private Integer price;
-    private String shop_id;
+    private Shop shop;
+    private Set<Order> orders;
 
     public String getName() {
         return name;
@@ -26,12 +27,20 @@ public class ItemDto {
         this.price = price;
     }
 
-    public String getShop_id() {
-        return shop_id;
+    public Shop getShop() {
+        return shop;
     }
 
-    public void setShop_id(String shop_id) {
-        this.shop_id = shop_id;
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -39,7 +48,8 @@ public class ItemDto {
         return "ItemDto{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
-                ", shop_id='" + shop_id + '\'' +
+                ", shop=" + shop +
+                ", orders=" + orders +
                 '}';
     }
 }

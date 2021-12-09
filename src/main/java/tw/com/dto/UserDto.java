@@ -8,6 +8,8 @@ public class UserDto {
     private String name;
     private String email;
     private String password;
+    private String gender;
+    private Set<Order> orders;
 
     public String getName() {
         return name;
@@ -33,12 +35,30 @@ public class UserDto {
         this.password = password;
     }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", orders=" + orders +
                 '}';
     }
 }

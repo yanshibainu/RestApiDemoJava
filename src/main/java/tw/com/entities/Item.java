@@ -1,5 +1,8 @@
 package tw.com.entities;
 
+import com.sun.istack.NotNull;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -7,7 +10,9 @@ import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
-public class Item {
+public class Item implements Serializable {
+	//private static final long serialVersionUID = 1L;
+
 	@Id
 	private String id = UUID.randomUUID().toString();
 
@@ -17,19 +22,20 @@ public class Item {
 	@Column()
 	private Integer price;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "shop_id")
 	private Shop shop;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL/*,mappedBy = "item"*/)
 	private Set<Order> orders;
 
 	public Item() {
 	}
 
-	public Item(String name, Integer price) {
+	public Item(String name, Integer price, Shop shop) {
 		this.name = name;
 		this.price = price;
+		this.shop = shop;
 	}
 
 	public String getId() {

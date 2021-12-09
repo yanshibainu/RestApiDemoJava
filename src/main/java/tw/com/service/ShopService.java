@@ -11,5 +11,10 @@ public class ShopService extends AbstractService<Shop>{
 	public ShopService(ShopRepository shopRepository) {
 		super(shopRepository);
 	}
-	
+
+	@Override
+	public Shop update(String id, Shop entity) {
+		entity.setId(id);
+		return super.update(id, entity);
+	}
 }

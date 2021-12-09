@@ -1,20 +1,27 @@
 package tw.com.entities;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_order")
-public class Order {
+public class Order implements Serializable {
+    //private static final long serialVersionUID = 1L;
+
     @Id
     private String id = UUID.randomUUID().toString();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumns({
             @JoinColumn(name = "item_price", referencedColumnName = "price"),
             @JoinColumn(name = "item_id", referencedColumnName = "id")})
@@ -51,8 +58,8 @@ public class Order {
         return user;
     }
 
-    public void setUser(User userId) {
-        this.user = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Item getItem() {
@@ -91,7 +98,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
-                ", userId=" + user +
+                ", user=" + user +
                 ", item=" + item +
                 ", amount=" + amount +
                 ", buyDate=" + buyDate +

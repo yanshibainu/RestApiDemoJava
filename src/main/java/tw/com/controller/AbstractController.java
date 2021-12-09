@@ -2,21 +2,33 @@ package tw.com.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tw.com.service.IService;
 
-public abstract class AbstractController<E> implements IController<E> {
+public abstract class AbstractController<E, EDto> implements IController<E, EDto> {
 	@Autowired
 	protected IService<E> iService;
+	@Autowired
+	private ModelMapper modelMapper;
+
+	private E entity;
+
+	public AbstractController(E entity) {
+		this.entity = entity;
+	}
 
 	@Override
-	public E create(E entity) {
+	public E create(EDto entityDto)
+	{
+		modelMapper.map(entityDto, entity);
 		return iService.create(entity);
 	}
 
 	@Override
-	public List<E> getAll() {
+	public List<E> getAll()
+	{
 		return iService.getAll();
 	}
 
@@ -26,8 +38,9 @@ public abstract class AbstractController<E> implements IController<E> {
 	}
 
 	@Override
-	public E update(String id, E enity) {
-		return iService.update(id, enity);
+	public E update(String id, EDto entityDto) {
+		modelMapper.map(entityDto, entity);
+		return iService.update(id, entity);
 	}
 
 	@Override

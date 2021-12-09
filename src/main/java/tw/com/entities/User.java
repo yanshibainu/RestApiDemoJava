@@ -1,12 +1,18 @@
 package tw.com.entities;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.*;
 
 @Entity
-public class User{
+public class User implements Serializable {
+	//private static final long serialVersionUID = 1L;
+
 	@Id 
 	private String id = UUID.randomUUID().toString();
 
@@ -19,17 +25,21 @@ public class User{
 	@Column(length = 15)
 	private String password;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@Column(length = 6)
+	private String gender;
+
+	@OneToMany(cascade = CascadeType.ALL/*, mappedBy = "user"*/)
 	private Set<Order> orders;
 
 
 	public User() {
 	}
 
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password, String gender) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.gender = gender;
 	}
 
 	public String getId() {
@@ -72,6 +82,14 @@ public class User{
 		this.orders = orders;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
 		return "User{" +
@@ -79,6 +97,7 @@ public class User{
 				", name='" + name + '\'' +
 				", email='" + email + '\'' +
 				", password='" + password + '\'' +
+				", gender='" + gender + '\'' +
 				", orders=" + orders +
 				'}';
 	}

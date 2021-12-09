@@ -3,10 +3,13 @@ package tw.com.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tw.com.dto.UserDto;
 import tw.com.entities.User;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends AbstractController<User>{
-
+public class UserController extends AbstractController<User, UserDto>{
+    public UserController() {
+        super(new User());
+    }
 }
